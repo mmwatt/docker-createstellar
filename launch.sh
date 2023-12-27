@@ -13,7 +13,7 @@ fi
 
 if ! [[ -f 'Server-v1.2.2.zip' ]]; then
 	rm -fr config kubejs libraries mods *Server.zip forge*.jar
-	curl -Lo 'Server-v1.2.2.zip' 'https://mediafilez.forgecdn.net/files/4922/530/Server-v1.2.2.zip' && unzip -u -o 'Server-v1.2.2.zip' -d /data
+	curl -Lo 'Server-v1.2.2.zip' 'https://edge.forgecdn.net/files/4922/530/Server-v1.2.2.zip' && unzip -u -o 'Server-v1.2.2.zip' -d /data
 	java -jar $(ls forge-*-installer.jar) --installServer
 fi
 
