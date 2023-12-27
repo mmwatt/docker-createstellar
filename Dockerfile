@@ -1,8 +1,8 @@
 # syntax=docker/dockerfile:1
 
-FROM openjdk:8u312-jre-buster
+FROM eclipse-temurin:17.0.9_9-jre
 
-LABEL version="1.3"
+LABEL version="1.2.2"
 
 RUN apt-get update && apt-get install -y curl unzip && \
  adduser --uid 99 --gid 100 --home /data --disabled-password minecraft
@@ -21,4 +21,4 @@ CMD ["/launch.sh"]
 
 ENV MOTD " Server Powered by Docker"
 ENV LEVEL world
-ENV JVM_OPTS "-Xms4096m -Xmx8192m"
+ENV JVM_OPTS "-Xms2048m -Xmx4096m"
