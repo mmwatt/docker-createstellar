@@ -12,9 +12,9 @@ else
 fi
 
 if ! [[ -f 'Server-v1.2.2.zip' ]]; then
-	rm -fr config kubejs libraries mods *Server.zip forge*.jar
+	rm -fr config kubejs libraries mods Server*.zip forge*.jar
 	curl -Lo 'Server-v1.2.2.zip' 'https://edge.forgecdn.net/files/4922/530/Server-v1.2.2.zip' && unzip -u -o 'Server-v1.2.2.zip' -d /data
-	java -jar $(ls forge-*-installer.jar) --installServer
+	# java -jar $(ls forge-*-installer.jar) --installServer
 fi
 
 if [[ -n "$MOTD" ]]; then
@@ -32,4 +32,7 @@ fi
 
 sed -i 's/server-port.*/server-port=25565/g' server.properties
 
-java -server $JVM_OPTS -Dsun.rmi.dgc.server.gcInterval=2147483646 -XX:+UnlockExperimentalVMOptions -XX:G1NewSizePercent=0 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M -XX:+UseG1GC -Dfml.queryResult=confirm -jar $(ls forge-*[0-9].jar) nogui
+sed -i "s/-Xms4G -Xmx4G/$JVM_OPTS/" variables.txt
+
+chmod +x /data/start.sh
+/data/start.sh
